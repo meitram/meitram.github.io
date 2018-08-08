@@ -231,10 +231,29 @@
         </div>
       </div>
     </section>
+    <script type="text/javascript">
+        var scriptsList = ['js/combined.js', 'js/creative.js'];
+        function enqueueScript(url) {
+            scriptsList.push(url);
+        }
 
-    <script src="js/combined.js"></script>
-    <!-- Custom scripts -->
-    <script src="js/creative.js"></script>
+        document.onreadystatechange = function () {
+            if (document.readyState == "complete") { 
+                console.log('Page completed, adding scripts');
+                setTimeout(function() {
+                    for (var index in scriptsList) {
+                        var url = scriptsList[index];
+                        var s = document.createElement('script');
+                        s.type = 'text/javascript';
+                        s.async = false;
+                        s.src = url;
+                        var x = document.getElementsByTagName('head')[0];
+                        x.appendChild(s);
+                    }
+                }, 100);
+            }
+        };
+    </script>
   </body>
 
 </html>

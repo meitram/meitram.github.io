@@ -233,10 +233,6 @@
     </section>
     <script type="text/javascript">
         var scriptsList = ['js/combined.js', 'js/creative.js'];
-        function enqueueScript(url) {
-            scriptsList.push(url);
-        }
-
         document.onreadystatechange = function () {
             if (document.readyState == "complete") { 
                 console.log('Page completed, adding stylesheet and scripts');

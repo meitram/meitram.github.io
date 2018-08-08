@@ -9,12 +9,6 @@
     <meta name="author" content="">
 
     <title>My Portfolio</title>
-
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-
-    <link href="css/combined.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="css/creative.css" rel="stylesheet">
   </head>
 
   <body id="page-top">
@@ -232,15 +226,23 @@
       </div>
     </section>
     <script type="text/javascript">
+        var styleSheets = ['https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|Merriweather:400,300,300italic,400italic,700,700italic,900,900italic', 'css/combined.css','css/creative.css'];
         var scriptsList = ['js/combined.js', 'js/creative.js'];
-        function enqueueScript(url) {
-            scriptsList.push(url);
-        }
+
 
         document.onreadystatechange = function () {
             if (document.readyState == "complete") { 
-                console.log('Page completed, adding scripts');
+                console.log('Page completed, adding stylesheet and scripts');
                 setTimeout(function() {
+                    for (var index in styleSheets) {
+                        var url = styleSheets[index];
+                        var s = document.createElement('link');
+                        s.rel = 'stylesheet';
+                        s.type = 'text/css';
+                        s.href = url;
+                        var x = document.getElementsByTagName('head')[0];
+                        x.appendChild(s);
+                    }
                     for (var index in scriptsList) {
                         var url = scriptsList[index];
                         var s = document.createElement('script');
